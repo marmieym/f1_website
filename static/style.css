@@ -1,0 +1,233 @@
+/* ===========================================================
+   style.css — dark, simple F1 theme
+   =========================================================== */
+
+:root {
+  --bg:       #0f1115;
+  --panel:    #171a21;
+  --panel-2:  #1e222b;
+  --border:   #2a2f3a;
+  --text:     #e6e8ee;
+  --muted:    #98a0b3;
+  --accent:   #e10600;   /* F1 red */
+  --win:      #23c55e;   /* green highlight for the better stat */
+  --error:    #ff6b6b;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.5;
+}
+
+/* ---------- header ---------- */
+header {
+  background: var(--panel);
+  border-bottom: 2px solid var(--accent);
+  padding: 20px 24px 0;
+}
+
+header h1 {
+  margin: 0 0 16px;
+  font-size: 1.6rem;
+  letter-spacing: 0.5px;
+}
+
+nav {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.nav-btn {
+  background: transparent;
+  border: none;
+  border-bottom: 3px solid transparent;
+  color: var(--muted);
+  font-size: 0.95rem;
+  padding: 10px 14px;
+  cursor: pointer;
+  transition: color 0.15s, border-color 0.15s;
+}
+
+.nav-btn:hover { color: var(--text); }
+
+.nav-btn.active {
+  color: var(--text);
+  border-bottom-color: var(--accent);
+}
+
+/* ---------- layout ---------- */
+main {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 28px 20px 60px;
+}
+
+.view { display: none; }
+.view.active { display: block; }
+
+h2 {
+  font-size: 1.25rem;
+  margin: 0 0 18px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--border);
+}
+
+/* ---------- status text ---------- */
+.status {
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+.status.error { color: var(--error); }
+
+/* ---------- tables ---------- */
+.table-wrap { overflow-x: auto; }
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background: var(--panel);
+  border-radius: 8px;
+  overflow: hidden;
+  font-size: 0.92rem;
+}
+
+th, td {
+  padding: 11px 14px;
+  text-align: left;
+  border-bottom: 1px solid var(--border);
+}
+
+thead th {
+  background: var(--panel-2);
+  color: var(--muted);
+  font-weight: 600;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+}
+
+tbody tr:last-child td { border-bottom: none; }
+tbody tr:hover { background: var(--panel-2); }
+
+/* ---------- compare view ---------- */
+.compare-controls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+select {
+  flex: 1 1 220px;
+  padding: 11px 12px;
+  background: var(--panel);
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  font-size: 0.92rem;
+}
+
+select:focus { outline: 2px solid var(--accent); outline-offset: 1px; }
+
+.vs {
+  color: var(--muted);
+  font-weight: 700;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+}
+
+button#compare-btn {
+  padding: 11px 22px;
+  background: var(--accent);
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  font-size: 0.92rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: filter 0.15s;
+}
+
+button#compare-btn:hover { filter: brightness(1.15); }
+
+.compare-table td,
+.compare-table th { text-align: center; }
+
+.compare-table thead th:first-child { color: var(--text); font-size: 0.95rem; text-transform: none; }
+.compare-table thead th:last-child  { color: var(--text); font-size: 0.95rem; text-transform: none; }
+
+.compare-table th:not(:first-child):not(:last-child) {
+  color: var(--muted);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+}
+
+.compare-table td.win {
+  color: var(--win);
+  font-weight: 700;
+}
+
+/* ---------- schedule ---------- */
+#schedule-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 14px;
+}
+
+.race-card {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--accent);
+  border-radius: 8px;
+  padding: 14px 16px;
+}
+
+.race-round {
+  color: var(--accent);
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+}
+
+.race-name {
+  font-weight: 600;
+  margin: 4px 0 6px;
+}
+
+.race-meta {
+  color: var(--muted);
+  font-size: 0.82rem;
+}
+
+.race-date {
+  margin-top: 8px;
+  font-size: 0.82rem;
+  color: var(--muted);
+}
+
+/* ---------- footer ---------- */
+footer {
+  text-align: center;
+  padding: 24px;
+  color: var(--muted);
+  font-size: 0.82rem;
+  border-top: 1px solid var(--border);
+}
+
+footer a { color: var(--accent); }
+
+/* ---------- mobile ---------- */
+@media (max-width: 560px) {
+  header { padding: 16px 16px 0; }
+  header h1 { font-size: 1.25rem; }
+  .nav-btn { padding: 9px 10px; font-size: 0.85rem; }
+  th, td { padding: 9px 10px; font-size: 0.85rem; }
+}
